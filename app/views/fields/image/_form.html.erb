@@ -15,9 +15,18 @@ By default, the input is a text field for the image's URL.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/Image
 %>
 
-<div class="field-unit__label">
-  <%= f.label field.attribute %>
-</div>
-<div class="field-unit__field">
-  <%= f.text_field field.attribute %>
-</div>
+<% if field.show_preview? %>
+  <div class="field-unit__label">
+    <%= label_tag field.attribute %>
+  </div>
+  <div class="field-unit__field">
+    <%= image_tag field.data, size: '80x80' %>
+  </div>
+<% else %>
+  <div class="field-unit__label">
+    <%= f.label field.attribute %>
+  </div>
+  <div class="field-unit__field">
+    <%= f.text_field field.attribute %>
+  </div>
+<% end %>
